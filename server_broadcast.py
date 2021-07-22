@@ -20,6 +20,8 @@ async def echo(ws, path):
             for conn in connected:
                 if conn != ws:
                     await conn.send("Someone said: " + msg)
+                if conn == ws:
+                    await ws.send(f"Pong: {msg}")
     # Handle disconnecting clients 
     except websockets.ConnectionClosed as e:
         print("A client just disconnected")
