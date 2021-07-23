@@ -1,5 +1,6 @@
 import websockets
 import asyncio
+from datetime import datetime
 
 # Server data
 PORT = 7890
@@ -9,7 +10,7 @@ connected = set()
 
 
 async def echo(ws, path):
-    print("A client just connected")
+    print(f"A client connected at: {datetime.now().strftime('%H:%M:%S')}")
     # Store a copy of the connected client
     connected.add(ws)
     # Handle incoming messages
