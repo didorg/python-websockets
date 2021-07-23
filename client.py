@@ -11,11 +11,14 @@ async def listen():
         # Connect to the server
         async with websockets.connect(url) as ws:
             # Send a greeting message
-            await ws.send(f"{client_name} - Updated!")
+            await ws.send("updated")
+            # Pong confirmation
+            msg = await ws.recv()
+            print(f"< {msg}")
             # Stay alive forever, listening to incoming msgs
-            while True:
-                msg = await ws.recv()
-                print(msg)
+            # while True:
+            #     msg = await ws.recv()
+            #     print(msg)
     except Exception as e:
         print(e)
 
