@@ -19,7 +19,8 @@ async def echo(ws, path):
             # Send a response to all connected clients except sender
             for conn in connected:
                 if conn != ws:
-                    await conn.send("Someone said: " + msg)
+                    await conn.send(msg)
+                # Receive a pong is optional to you!!!
                 if conn == ws:
                     await ws.send(f"Pong: {msg}")
     # Handle disconnecting clients 
